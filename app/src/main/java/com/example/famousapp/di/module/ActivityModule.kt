@@ -9,6 +9,7 @@ import com.example.famousapp.famous.ui.splash.SplashViewModel
 import com.example.famousapp.famous.utils.ViewModelProviderFactory
 import com.example.famousapp.famous.utils.network.NetworkHelper
 import com.example.famousapp.famous.utils.rx.SchedulerProvider
+import com.example.famousapp.ui.main.MainViewModel
 import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
@@ -36,5 +37,15 @@ class ActivityModule(private val activity: BaseActivity<*>) {
             //this lambda creates and return SplashViewModel
         }).get(SplashViewModel::class.java)
 
+    @Provides
+    fun provideMainViewModel(
+        schedulerProvider: SchedulerProvider,
+        compositeDisposable: CompositeDisposable,
+        networkHelper: NetworkHelper,
+        popularRepository: PopularRepository
+    ): MainViewModel = ViewModelProviders.of(
+        activity, ViewModelProviderFactory(MainViewModel::class) {
+            MainViewModel(schedulerProvider, compositeDisposable, networkHelper, popularRepository)
+        }).get(MainViewModel::class.java)
 
 }

@@ -1,10 +1,12 @@
 package com.example.famousapp.famous.ui.splash
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.example.famousapp.famous.di.component.ActivityComponent
 import com.example.famousapp.famous.ui.base.BaseActivity
 import com.example.famousapp.R
+import com.example.famousapp.ui.main.MainActivity
 import com.example.famousapp.utils.common.Event
 
 
@@ -30,7 +32,7 @@ class SplashActivity : BaseActivity<SplashViewModel>() {
         // view model also provided the Bundle in the event that is needed for the Activity
         viewModel.launchMain.observe(this, Observer<Event<Map<String, String>>> {
             it.getIfNotHandled()?.run {
-               // startActivity(Intent(applicationContext, MainActivity::class.java))
+                startActivity(Intent(applicationContext, MainActivity::class.java))
             }
         })
     }
