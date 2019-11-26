@@ -1,20 +1,22 @@
-package com.example.elnhrawy.famous.ui.populars
+package com.example.famousapp.ui.populars
 
 import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
+import com.example.famousapp.ui.populars.PopularItemViewHolder
 import com.example.famousapp.famous.data.model.Person
 import com.example.famousapp.famous.ui.base.BaseAdapter
+import com.example.famousapp.famous.utils.interfaces.onViewItemClicked
 import java.util.*
 import kotlin.collections.ArrayList
 
 class PopularsAdapter(
     parentLifecycle: Lifecycle,
-    val populars: ArrayList<Person>, val filterList : ArrayList<Person>)
+    val populars: ArrayList<Person> , val filterList : ArrayList<Person> , private val itemListener: onViewItemClicked?)
     : BaseAdapter<Person, PopularItemViewHolder>(parentLifecycle, populars,filterList) {
 
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = PopularItemViewHolder(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = PopularItemViewHolder(parent,itemListener)
 
     fun FilterList(name: String) {
         var name = name

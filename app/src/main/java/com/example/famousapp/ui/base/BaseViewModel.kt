@@ -23,7 +23,6 @@ abstract class BaseViewModel(
 
     val messageStringId: MutableLiveData<Resource<Int>> = MutableLiveData()
     val messageString: MutableLiveData<Resource<String>> = MutableLiveData()
-    val clickedpositionInt: MutableLiveData<Int> = MutableLiveData()
 
     fun checkInternetConnectionWithMessage(): Boolean =
         if (networkHelper.isNetworkConnected()) {

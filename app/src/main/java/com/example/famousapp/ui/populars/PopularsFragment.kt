@@ -1,26 +1,29 @@
-package com.example.elnhrawy.famous.ui.populars
+package com.example.famousapp.ui.populars
 
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
-import android.widget.AbsListView
 import androidx.core.os.bundleOf
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.famousapp.R
 import com.example.famousapp.famous.di.component.FragmentComponent
 import com.example.famousapp.famous.ui.base.BaseFragment
+import com.example.famousapp.famous.utils.interfaces.onViewItemClicked
 import kotlinx.android.synthetic.main.populars_fragment.*
 import kotlinx.android.synthetic.main.search_bar.view.*
 import javax.inject.Inject
 
 
 
-class PopularsFragment :  BaseFragment<PopularsViewModel>()  {
+class PopularsFragment :  BaseFragment<PopularsViewModel>() , onViewItemClicked {
+    override fun onViewItemClicked(position: Int) {
+        val bundle = bundleOf("person" to popularsAdapter.populars.get(position))
+        performNavigationToDestination(R.id.action_popularsFragment_to_popularDetailsFragment,bundle)
+
+    }
 
     private var isLoading : Boolean = false
 

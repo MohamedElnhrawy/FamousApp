@@ -1,4 +1,4 @@
-package com.example.elnhrawy.famous.ui.populars
+package com.example.famousapp.ui.populars
 
 import android.os.Build
 import androidx.lifecycle.LiveData
@@ -34,7 +34,6 @@ class PopularItemViewModel @Inject constructor(
         }else{
             messageStringId.postValue(Resource.error(R.string.network_connection_error))
         }
-        clickedpositionInt.postValue(position)
         Logger.d(TAG, "onItemClick at $position")
        // onViewClicked(position)
     }

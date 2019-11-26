@@ -43,7 +43,7 @@ class ApplicationModule(private val application: FamousApplication) {
     @Provides
     @Singleton
     fun provideSharedPreferences(): SharedPreferences =
-        application.getSharedPreferences("elnhrawy-famous-project-prefs", Context.MODE_PRIVATE)
+        application.getSharedPreferences("famousapp-project-prefs", Context.MODE_PRIVATE)
 
     /**
      * We need to write @Singleton on the provide method if we are create the instance inside this method
@@ -54,7 +54,7 @@ class ApplicationModule(private val application: FamousApplication) {
     fun provideDatabaseService(): DatabaseService =
         Room.databaseBuilder(
             application, DatabaseService::class.java,
-            "elnhrawy-famous-project-db"
+            "famousapp-project-db"
         ).build()
 
     @Provides

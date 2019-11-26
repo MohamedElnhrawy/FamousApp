@@ -1,11 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"  android:id="@+id/main"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     app:startDestination="@id/popularsFragment">
 
     <fragment
         android:id="@+id/popularsFragment"
-        android:name="com.example.elnhrawy.famous.ui.populars.PopularsFragment"
-        android:label="PopularsFragment" />
+        android:name="com.example.famousapp.ui.populars.PopularsFragment"
+        android:label="PopularsFragment" >
+    <action
+        android:id="@+id/action_popularsFragment_to_popularDetailsFragment"
+        app:destination="@id/popularDetailsFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right" />
+        <argument
+            android:name="person"
+            app:argType="com.example.famousapp.data.model.Person"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/popularDetailsFragment"
+        android:name="com.example.famousapp.ui.popularDetails.PopularDetailsFragment"
+        android:label="popular_details_fragment"
+        tools:layout="@layout/popular_details_fragment" >
+        <argument
+            android:name="person"
+            app:argType="com.example.famousapp.data.model.Person"
+            />
+    </fragment>
 
 </navigation>

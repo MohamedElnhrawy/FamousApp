@@ -1,8 +1,9 @@
 package com.example.famousapp.famous.di.component
 
-import com.example.elnhrawy.famous.ui.populars.PopularItemViewHolder
 import com.example.famousapp.famous.di.ViewModelScope
 import com.example.famousapp.famous.di.module.ViewHolderModule
+import com.example.famousapp.ui.popularDetails.images.ImageItemViewHolder
+import com.example.famousapp.ui.populars.PopularItemViewHolder
 import dagger.Component
 
 @ViewModelScope
@@ -12,4 +13,6 @@ import dagger.Component
 )
 interface ViewHolderComponent {
     fun inject(viewHolder: PopularItemViewHolder)
+    fun inject(viewHolder: ImageItemViewHolder)
+
 }

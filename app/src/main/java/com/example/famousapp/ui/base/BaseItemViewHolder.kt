@@ -1,5 +1,6 @@
 package com.example.famousapp.famous.ui.base
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,8 @@ import com.example.famousapp.famous.di.component.ViewHolderComponent
 import com.example.famousapp.famous.di.module.ViewHolderModule
 import com.example.famousapp.famous.utils.display.Toaster
 import com.example.famousapp.famous.utils.interfaces.onViewItemClicked
+import com.example.famousapp.famous.utils.log.Logger
+import com.example.famousapp.ui.popularDetails.images.ImageItemViewModel
 import javax.inject.Inject
 
 abstract class BaseItemViewHolder<T : Any, VM : BaseItemViewModel<T>>(
@@ -80,16 +83,16 @@ abstract class BaseItemViewHolder<T : Any, VM : BaseItemViewModel<T>>(
 
     protected open fun setupObservers() {
         viewModel.messageString.observe(this, Observer {
-            it.data?.run { showMessage(this) }
+            it.data?.run {
+                Logger.d("message", "onItemClick at $this")
+                }
         })
 
         viewModel.messageStringId.observe(this, Observer {
             it.data?.run { showMessage(this) }
         })
 
-        viewModel.clickedpositionInt.observe(this , Observer {
-          //  listener.onViewItemClicked(it)
-        })
+
     }
 
     protected abstract fun injectDependencies(viewHolderComponent: ViewHolderComponent)
