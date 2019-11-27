@@ -9,9 +9,10 @@ import com.example.famousapp.famous.data.model.Profiles
 import com.example.famousapp.famous.di.component.ViewHolderComponent
 import com.example.famousapp.famous.ui.base.BaseItemViewHolder
 import com.example.famousapp.famous.utils.common.GlideHelper.GlideRequetOptions
+import com.example.famousapp.famous.utils.interfaces.onViewItemClicked
 import kotlinx.android.synthetic.main.image_item_view.view.*
 
-class ImageItemViewHolder(parent: ViewGroup) :
+class ImageItemViewHolder(parent: ViewGroup,private val itemListener : onViewItemClicked?) :
     BaseItemViewHolder<Profiles, ImageItemViewModel>(R.layout.image_item_view, parent) {
 
     override fun injectDependencies(viewHolderComponent: ViewHolderComponent) {
@@ -33,6 +34,8 @@ class ImageItemViewHolder(parent: ViewGroup) :
     override fun setupView(view: View) {
         view.setOnClickListener {
             viewModel.onItemClick(adapterPosition)
+            itemListener?.onViewItemClicked(adapterPosition)
+
         }
     }
 }

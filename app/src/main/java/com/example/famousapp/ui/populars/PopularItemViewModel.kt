@@ -1,11 +1,10 @@
 package com.example.famousapp.ui.populars
 
-import android.os.Build
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.example.famousapp.BuildConfig
 import com.example.famousapp.R
-import com.example.famousapp.famous.data.model.Person
+import com.example.famousapp.data.model.Person
 import com.example.famousapp.famous.ui.base.BaseItemViewModel
 import com.example.famousapp.famous.utils.common.Resource
 import com.example.famousapp.famous.utils.log.Logger
@@ -34,8 +33,6 @@ class PopularItemViewModel @Inject constructor(
         }else{
             messageStringId.postValue(Resource.error(R.string.network_connection_error))
         }
-        Logger.d(TAG, "onItemClick at $position")
-       // onViewClicked(position)
     }
 
     override fun onCreate() {

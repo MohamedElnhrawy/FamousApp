@@ -4,18 +4,18 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.famousapp.famous.data.model.Person
+import com.example.famousapp.data.local.db.entity.PersonEntity
 
 
 @Dao
 interface PersonDao {
 
     @Query("SELECT * FROM person_entity")
-    fun getAll(): List<Person>
+    fun getAll(): List<PersonEntity>
 
     @Insert
-    fun insert(entity: Person)
+    fun insert(entity: PersonEntity)
 
     @Delete
-    fun delete(entity: Person)
+    fun delete(entity: PersonEntity)
 }

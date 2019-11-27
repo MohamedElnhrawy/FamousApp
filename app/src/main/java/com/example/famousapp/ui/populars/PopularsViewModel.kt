@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
+import com.example.famousapp.R
 import com.example.famousapp.famous.data.remote.response.PopularsResponse
 import com.example.famousapp.famous.data.repository.PopularRepository
 import com.example.famousapp.famous.ui.base.BaseViewModel
@@ -21,27 +22,24 @@ class PopularsViewModel(
 
     var PAGE = 0;
     private val popularsLiveData: MutableLiveData<Resource<PopularsResponse>> = MutableLiveData()
+     val showLoading: MutableLiveData<Boolean> = MutableLiveData()
+     val showEmptyView: MutableLiveData<Boolean> = MutableLiveData()
 
     fun getPopulars(): LiveData<PopularsResponse> =
         Transformations.map(popularsLiveData) { it.data }
 
 
     override fun onCreate() {
-        if (popularsLiveData.value == null && checkInternetConnectionWithMessage()) {
-            popularsLiveData.postValue(Resource.loading())
-            compositeDisposable.add(
-                popularRepository.fetchPopular("en-US",++PAGE)
-                    .subscribeOn(schedulerProvider.io())
-                    .subscribe(
-                        { popularsLiveData.postValue(Resource.success(it)) },
-                        {
-                            handleNetworkError(it)
-                            popularsLiveData.postValue(Resource.error())
-                        })
-            )
-        }
+        init()
+    }
 
+    fun init(){
+        if ( checkInternetConnectionWithMessage()) {
+            showEmptyView.postValue(false)
+            showLoading.postValue(true)
+            getPopularsData()
 
+        }else showEmptyView.postValue(true)
 
     }
 
@@ -54,14 +52,16 @@ class PopularsViewModel(
                 popularRepository.fetchPopular("en-US",++PAGE)
                     .subscribeOn(schedulerProvider.io())
                     .subscribe(
-                        { popularsLiveData.postValue(Resource.success(it)) },
+                        { popularsLiveData.postValue(Resource.success(it))
+                            showLoading.postValue(false)
+                        },
                         {
                             handleNetworkError(it)
                             popularsLiveData.postValue(Resource.error())
+                            showLoading.postValue(false)
+
                         })
             )
         }
-
-        Log.e("spage",""+PAGE)
     }
 }

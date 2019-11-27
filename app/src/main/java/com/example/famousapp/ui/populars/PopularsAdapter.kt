@@ -2,8 +2,7 @@ package com.example.famousapp.ui.populars
 
 import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
-import com.example.famousapp.ui.populars.PopularItemViewHolder
-import com.example.famousapp.famous.data.model.Person
+import com.example.famousapp.data.model.Person
 import com.example.famousapp.famous.ui.base.BaseAdapter
 import com.example.famousapp.famous.utils.interfaces.onViewItemClicked
 import java.util.*
@@ -11,7 +10,7 @@ import kotlin.collections.ArrayList
 
 class PopularsAdapter(
     parentLifecycle: Lifecycle,
-    val populars: ArrayList<Person> , val filterList : ArrayList<Person> , private val itemListener: onViewItemClicked?)
+    val populars: ArrayList<Person>, val filterList : ArrayList<Person>, private val itemListener: onViewItemClicked?)
     : BaseAdapter<Person, PopularItemViewHolder>(parentLifecycle, populars,filterList) {
 
 

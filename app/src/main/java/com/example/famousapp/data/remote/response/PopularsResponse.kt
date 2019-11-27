@@ -1,6 +1,5 @@
 package com.example.famousapp.famous.data.remote.response
-
-import com.example.famousapp.famous.data.model.Person
+import com.example.famousapp.data.model.Person
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 

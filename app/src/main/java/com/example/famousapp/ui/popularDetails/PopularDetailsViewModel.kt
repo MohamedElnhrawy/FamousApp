@@ -23,6 +23,7 @@ class PopularDetailsViewModel (
 
     override fun onCreate() {
 
+
     }
 
     fun getImages(): LiveData<ImagesResponse> =
@@ -48,14 +49,17 @@ class PopularDetailsViewModel (
         }
     }
 
-    fun fetchPersonProfile(person_id : Int){
-        if (profileLiveData.value == null && checkInternetConnectionWithMessage()) {
+    fun fetchPenrsonProfile(person_id : Int){
+        if ( checkInternetConnectionWithMessage()) {
             profileLiveData.postValue(Resource.loading())
             compositeDisposable.add(
                 popularRepository.fetchPersonProfile(person_id , "en-US")
                     .subscribeOn(schedulerProvider.io())
                     .subscribe(
-                        { profileLiveData.postValue(Resource.success(it)) },
+                        {
+                            profileLiveData.postValue(Resource.success(it))
+                            fetchPersonImages(person_id)
+                        },
                         {
                             handleNetworkError(it)
                             profileLiveData.postValue(Resource.error())

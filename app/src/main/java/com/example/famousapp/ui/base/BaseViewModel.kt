@@ -1,5 +1,6 @@
 package com.example.famousapp.famous.ui.base
 
+import android.os.Bundle
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.famousapp.R

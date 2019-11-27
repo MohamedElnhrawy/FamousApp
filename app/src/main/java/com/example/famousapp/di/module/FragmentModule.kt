@@ -8,11 +8,13 @@ import com.example.famousapp.famous.ui.base.BaseFragment
 import com.example.famousapp.famous.utils.ViewModelProviderFactory
 import com.example.famousapp.famous.utils.network.NetworkHelper
 import com.example.famousapp.famous.utils.rx.SchedulerProvider
+import com.example.famousapp.ui.popularDetails.PopularDetailsFragment
 import com.example.famousapp.ui.popularDetails.PopularDetailsViewModel
 import com.example.famousapp.ui.popularDetails.images.ImagesAdapter
 import com.example.famousapp.ui.populars.PopularsAdapter
 import com.example.famousapp.ui.populars.PopularsFragment
 import com.example.famousapp.ui.populars.PopularsViewModel
+import com.example.famousapp.ui.previewImage.ImagePreviewViewModel
 import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
@@ -52,9 +54,22 @@ class FragmentModule(private val fragment: BaseFragment<*>) {
             }
         ).get(PopularDetailsViewModel::class.java)
 
+    @Provides
+    fun provideImagePreviewViewModel(
+        schedulerProvider: SchedulerProvider,
+        compositeDisposable: CompositeDisposable,
+        networkHelper: NetworkHelper,
+        popularRepository: PopularRepository
+    ): ImagePreviewViewModel =
+        ViewModelProviders.of(fragment,
+            ViewModelProviderFactory(ImagePreviewViewModel::class) {
+                ImagePreviewViewModel(schedulerProvider, compositeDisposable, networkHelper, popularRepository)
+            }
+        ).get(ImagePreviewViewModel::class.java)
+
 
     @Provides
     fun providePopularsAdapter() = PopularsAdapter(fragment.lifecycle, ArrayList(),ArrayList(), fragment as? PopularsFragment)
     @Provides
-    fun provideImagedAdapter() = ImagesAdapter(fragment.lifecycle, ArrayList(),ArrayList())
+    fun provideImagedAdapter() = ImagesAdapter(fragment.lifecycle, ArrayList(),ArrayList(), fragment as? PopularDetailsFragment)
 }

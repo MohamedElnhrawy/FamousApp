@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.famousapp.R
-import com.example.famousapp.famous.data.model.Person
+import com.example.famousapp.data.model.Person
 import com.example.famousapp.famous.di.component.ViewHolderComponent
 import com.example.famousapp.famous.ui.base.BaseItemViewHolder
 import com.example.famousapp.famous.utils.common.GlideHelper.GlideRequetOptions

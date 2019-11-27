@@ -10,5 +10,8 @@
     <string name="see_more">see more</string>
     <string name="see_less">see less</string>
     <string name="search">Search Famous</string>
+    <string name="confirmation">Conformation</string>
+    <string name="save_image">Save Image Locally!</string>
+    <string name="no_data">Sorry there is no data found!</string>
 
 </resources>

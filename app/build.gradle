@@ -20,7 +20,13 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
-
+        compileOptions {
+            sourceCompatibility 1.8
+            targetCompatibility 1.8
+        }
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
     }
     buildTypes {
         // Add this debug config to provide debug settings
@@ -30,11 +36,11 @@ android {
             buildConfigField("String", "API_KEY", "\"0d6132b5c91b61ced725e7a692c91cb5\"")
         }
         release {
-            minifyEnabled true // to apply the proguard
+            minifyEnabled false // to apply the proguard
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "BASE_URL", "\"https://api.projects.bootcamp.mindorks.com/batch/green/\"")
+            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/person/\"")
             buildConfigField("String", "BASE_IMAGE_URL", "\"https://image.tmdb.org/t/p/original\"")
-            buildConfigField("String", "API_KEY", "\"HBNA19QVVAPP\"")
+            buildConfigField("String", "API_KEY", "\"0d6132b5c91b61ced725e7a692c91cb5\"")
         }
     }
 }

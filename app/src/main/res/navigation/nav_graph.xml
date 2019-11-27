@@ -31,6 +31,32 @@
             android:name="person"
             app:argType="com.example.famousapp.data.model.Person"
             />
+
+        <argument
+            android:name="Profiles"
+            app:argType="com.example.famousapp.famous.data.model.Profiles"
+            android:defaultValue="@null"
+            />
+
+        <action
+            android:id="@+id/action_popularDetailsFragment_to_imagePreviewFragment"
+            app:destination="@id/imagePreviewFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/imagePreviewFragment"
+        android:name="com.example.famousapp.ui.previewImage.ImagePreviewFragment"
+        android:label="image_preview_fragment"
+        tools:layout="@layout/image_preview_fragment" >
+        <argument
+            android:name="Profiles"
+            app:argType="com.example.famousapp.famous.data.model.Profiles"
+            />
+
     </fragment>
 
 </navigation>
