@@ -1,9 +1,6 @@
 package com.example.famousapp.data.local.db.dao
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.example.famousapp.data.local.db.entity.PersonEntity
 
 
@@ -12,6 +9,9 @@ interface PersonDao {
 
     @Query("SELECT * FROM person_entity")
     fun getAll(): List<PersonEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll(items: List<PersonEntity>)
 
     @Insert
     fun insert(entity: PersonEntity)
